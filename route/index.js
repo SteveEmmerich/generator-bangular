@@ -12,6 +12,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.appName = _.camelize(this.appname);
     this.controllerName = _.capitalize(_.camelize(this.name)) + 'Ctrl';
     this.dashName = _.dasherize(this.name);
+    this.filters = this.config.get('filters');
   },
 
   prompting: function () {
@@ -42,12 +43,12 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.template('controller.js', basePath + '.controller.js');
     this.template('view.html', basePath + '.html');
 
-    var filters = this.config.get('filters');
+    //var filters = this.config.get('filters');
 
-    if (filters && filters.karma) {
+    if (this.filters && this.filters.karma) {
       this.template('spec.js', basePath + '.spec.js');
     }
-    if (filters && filters.e2e) {
+    if (this.filters && this.filters.e2e) {
       this.template('e2e.js', basePath + '.e2e.js');
     }
 

@@ -118,6 +118,18 @@ var BangularGenerator = yeoman.generators.Base.extend({
       name: 'modules',
       message: 'Which module do you want to load?',
       choices: [{
+        value: 'uirouter',
+        name: 'angular-uirouter',
+        checked: false
+      },{
+        value: 'ngMaterial',
+        name: 'angular-material',
+        checked: false
+      },{
+        value: 'ngMessages',
+        name: 'angular-messages',
+        checked: false
+      },{
         value: 'ngCookies',
         name: 'angular-cookies',
         checked: false

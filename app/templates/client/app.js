@@ -1,20 +1,26 @@
 'use strict';
 
 angular.module('<%= appname %>', [
-  'ngRoute'<% if (filters.ngCookies) { %>,
-  'ngCookies'<% } %><% if (filters.ngResource) { %>,
-  'ngResource'<% } %><% if (filters.ngSanitize) { %>,
-  'ngSanitize'<% } %><% if (filters.ngAnimate) { %>,
-  'ngAnimate'<% } %><% if (filters.sockets) { %>,
-  'btford.socket-io'<% } %>
+    'ngRoute'<% if (filters.ngCookies) { %>,
+    'ngCookies'<% } %><% if (filters.ngResource) { %>,
+    'ngResource'<% } %><% if (filters.ngSanitize) { %>,
+    'ngSanitize'<% } %><% if (filters.ngAnimate) { %>,
+    'ngAnimate'<% } %><% if (filters.ngMessages) { %>,
+    'ngMessages'<% } %><% if (filters.ngMaterial) { %>,
+    'ngMaterial',
+    'ngMdIcons'<% } %><% if (filters.sockets) { %>,
+    'btford.socket-io'<% } %><% if (filters.uirouter) { %>,
+    'ui.router'<% } %>
 ])
-  .config(function ($routeProvider, $locationProvider<% if (filters.auth) { %>, $httpProvider<% } %>) {
-
+  .config(function (<% if (filters.uirouter) { %> $urlRouterProvider <% } else { %> $routeProvider <% } %>, $locationProvider<% if (filters.auth) { %>, $httpProvider<% } %>) { <% if (filters.uirouter) { %>
+    $urlRouterProvider
+        .otherwise('/');
+<% } else { %>
     $routeProvider
-      .otherwise({
-        redirectTo: '/'
-      });
-
+        .otherwise({
+            redirectTo: '/'
+    });
+<% } %>
     $locationProvider.html5Mode(true);<% if (filters.auth) { %>
     $httpProvider.interceptors.push('authInterceptor');<% } %>
 

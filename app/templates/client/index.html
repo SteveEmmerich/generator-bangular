@@ -27,7 +27,7 @@
 
     <nav-bar></nav-bar><% } %>
 
-    <div ng-view></div><% if (filters.sockets) { %>
+    <div <% if (filters.uirouter) { %> ui-view  ng-cloak<% } else { %> ng-view <% } %>></div><% if (filters.sockets) { %>
 
     <script src="socket.io/socket.io.js"></script><% } %>
 
