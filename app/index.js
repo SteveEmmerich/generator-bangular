@@ -204,6 +204,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
 
     this.config.set('version', this.pkg.version);
     this.config.set('filters', this.filters);
+    this.config.set('routes', [{value: 'home', name: 'home', checked: false}]);
   },
 
   generate: function () {

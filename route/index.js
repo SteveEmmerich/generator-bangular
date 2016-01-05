@@ -13,6 +13,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.controllerName = _.capitalize(_.camelize(this.name)) + 'Ctrl';
     this.dashName = _.dasherize(this.name);
     this.filters = this.config.get('filters');
+    this.routes = this.config.get('routes');
   },
 
   prompting: function () {
@@ -29,9 +30,10 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       message: 'Do you want to create and import the ' + chalk.blue(this.dashName + '.scss') + ' style in your app.scss?',
       default: false
     }], function (props) {
-      self.route = props.route;
-      self.import = props.import;
-      done();
+        self.route = props.route;
+        self.import = props.import;
+        self.routes.push({value: self.dashName, name: self.dashName, checked: false, url: self.route})
+        done();
     });
   },
 
@@ -74,8 +76,13 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       }.bind(this), 250);
 
     }
-
-  }
+    
+    
+  },
+    saveSettings: function()
+    {
+        this.config.set('routes', this.routes);
+    }
 
 });
 

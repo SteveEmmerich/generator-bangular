@@ -7,10 +7,16 @@ angular.module('<%= appname %>')
         $stateProvider
             .state('<%= dashName %>',
             {
-                url: '<%= route %>',
-                templateUrl: 'views/<%= dashName %>/<%= dashName %>.html',
-                controller: '<%= controllerName %>',
-                controllerAs: 'vm'
+                views:
+                {
+                    '': {
+                        url: '<%= route %>',
+                        templateUrl: 'views/<%= dashName %>/<%= dashName %>.html',
+                        controller: '<%= controllerName %>',
+                        controllerAs: 'vm'
+                    },
+                    // sub-state insert
+                }
             });
     <% } else { %>
         $routeProvider

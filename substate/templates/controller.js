@@ -6,6 +6,6 @@ angular.module('<%= appName %>')
         {
             var vm = this;
             angular.extend(vm, {
-              name: '<%= controllerName %>'
+                name: '<%= controllerName %>'
             });
         });
